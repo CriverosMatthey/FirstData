@@ -11,9 +11,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## the global Ocean Health Index 
+# Learning ggplot2
 
-These data are from the global Ocean Health Index which assesses the condition of marine resources for **220** countries or territories.
+We're learning ggplot2 It's going to be amazing. 
 
 
 ```{r cars}
