@@ -16,7 +16,9 @@ We're learning ggplot2 It's going to be amazing.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Including Plots
 
+You can also embed plots, for example:
 
 
 ```{r cars}
@@ -29,17 +31,71 @@ head(ohi_data)
 summary(ohi_data)
 
 table(ohi_data$georegion_two)
+
+library(ggplot2)
+#ggplot(data = ohi_data, aes(x = georegion_one, y =OHI_score)) + 
+#geom_point()
+
+
+ggplot(data = ohi_data, aes(x = OHI_score, y = HDI, size = coastal_pop)) + 
+  geom_jitter(width=0.2)
+
 ```
+
+Boxplot
+
+`````{r bloxplot}
+
+ggplot(data = ohi_data, aes(x = georegion_one)) + 
+  geom_bar()
+```
+Histogram
+```{r Histogram}
+
+ggplot(data = ohi_data, aes(x = HDI)) + 
+geom_histogram() 
+
+```
+
+
 
 ## Including Plots
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-ohi_data <- read.csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/OHI_global_data.csv")
-library(ggplot2)
-ggplot(data = ohi_data, aes(x = georegion_one, y =OHI_score)) + 
-geom_point()
+```{r multiples geoms}
+
+ggplot(data = ohi_data, aes(y=OHI_score, x = HDI, color=georegion_one)) +
+  geom_point()
+
 ```
+
+
+```{r multiples geoms}
+
+
+ggplot(data = ohi_data) +
+geom_point(aes(y = OHI_score, x = HDI, color=georegion_one))  
+
+
+
+```
+
+
+Adding a 
+
+``` {r}
+
+ggplot(data=ohi_data, aes(x= OHI_score, y = HDI,
+color = coastal_pop))+
+  geom_point()
+
+
+
+
+
+
+
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
