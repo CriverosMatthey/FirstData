@@ -67,13 +67,99 @@ Hint: do this in 2 steps by assigning a variable and then using the mean() funct
 
 
 ```{r}
-x <- filter(gapminder, country == "Brazil", year > 1986)  
+x <- filter(gapminder, country == "Brazil", year > 1986)
 mean(x$lifeExp)
+min(x$lifeExp)
+
 
 
 ```
 
+learning operator 'select()`
+
+```{r}
+select(gapminder, year, country, lifeExp)
+select(gapminder, -continent, -gdpPercap, -pop)
+
+```
+
+Using `filter` and `select` 
+
+```{r}
+gap_cambodia <- filter(gapminder, country=="Cambodia")
+gap_cambodia2 <- select(gap_cambodia, -continent, -lifeExp)
+
+```
+
+Learning pipe function
+
+```{r}
+gapminder %>% head()
+head(gapminder)
 
 
+## instead of this...
+gap_cambodia  <- filter(gapminder, country == "Cambodia")
+ select(gap_cambodia, -continent, -lifeExp) 
+
+## ...we can do this
+gap_cambodia  <- gapminder %>% 
+  filter(country == "Cambodia") %>% 
+  select(-continent, -lifeExp) 
+
+```
 
 
+Lear `mutate``
+
+```{r}
+
+
+mutate (gapminder,gdp = pop *gdpPercap)
+
+gapminder %>% 
+  mutate (gdp= pop *gdpPercap)
+
+
+```
+
+Calculate the population in thousands for all Asian countries in the year 2007 and add it as a new column.
+
+```{r}
+
+gap_Asia_continent <- filter(gapminder, continent=="Asia", year == 2007) %>% 
+  mutate(New_columm= pop/1000 )
+
+```
+
+Learning the `group_by()`
+
+```{r}
+
+gapminder %>% 
+  filter(year==2002) %>% 
+  group_by(continent) %>% 
+  mutate( cont_pop = sum(pop))
+  
+```
+
+add in `summarize`
+
+```{r}
+gapminder %>% 
+  filter(year==2002) %>% 
+  group_by(continent) %>% 
+  summarize(cont_pop =sum(pop))
+  
+  
+
+```
+
+
+```{r}
+gapminder %>% 
+  filter(year==2002) %>% 
+  group_by(continent,year) %>% 
+  summarize(cont_pop =sum(pop))
+  
+```
