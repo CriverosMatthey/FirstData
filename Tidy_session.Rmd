@@ -1,0 +1,65 @@
+---
+title: "Tidy_session"
+author: "Cristian Riveros"
+date: "6/19/2019"
+output: html_document
+---
+ 
+ load tidyverse
+```{r}
+
+library (tidyverse)
+
+```
+
+Load data
+
+```{r}
+
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv') 
+
+
+```
+
+```{r}
+head(gapminder)
+tail (gapminder)
+
+
+str(gapminder)
+
+names(gapminder)
+
+ncol(gapminder)
+
+summary(gapminder)
+
+#library(skimr) # install.packages('skimr')
+#skim(gapminder)
+
+```
+
+Look at individual dataframe
+
+```{r}
+gapminder$lifeExp
+gapminder$continent
+
+
+
+```
+
+Learning the `filter()` function
+
+```{r}
+
+filter(gapminder, lifeExp < 29)
+
+#
+filter(gapminder, country == "Mexico")
+
+x <- filter(gapminder, country == "Brazil", year > 1986)  
+mean(x$lifeExp)
+
+
+```

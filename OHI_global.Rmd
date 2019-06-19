@@ -91,11 +91,68 @@ color = coastal_pop))+
   geom_point()
 
 
+```
+
+adding a third discrete variable
+
+``` {r}
 
 
 
 
+ggplot(data=ohi_data, aes(x= OHI_score, y = HDI,
+                            color=georegion_one))+
+geom_point()
 
+ggplot(data=ohi_data, aes(x= OHI_score, y = HDI,
+shape=georegion_one))+
+
+geom_point()
+
+
+  
+```
+
+  Adding others
+  
+```{r}
+
+ggplot(data = ohi_data, aes(y = OHI_score, x = HDI, color=georegion_one)) + 
+  geom_point() + 
+    labs(y = "OHI score, 2017",
+       x = "Human Development Index",
+       title = "Countries with high human development have more sustainable oceans",
+      color = "Georegion") +  # if color doesn't work, use "fill"
+     theme_bw()
+```
+  
+  other forms to describes that
+  
+```{r}
+
+library(ggplot2)
+  
+  ggplot(data = ohi_data, aes(x = OHI_score, y = OHI_trend, color = HDI)) + 
+  geom_point(size =2) +
+  scale_colour_gradientn(colors = c("blue", "red"))
+  
+```  
+  
+Other
+
+``` {r}
+  my_palette <- brewer.pal(n=12, "Set3")
+
+ggplot(data = ohi_data, aes(x = OHI_score, y = HDI, color = georegion_one)) + 
+  geom_point(size = 3) +
+  scale_color_manual(values = my_palette)
+  
+```
+  
+  
+
+  
+  
 
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
