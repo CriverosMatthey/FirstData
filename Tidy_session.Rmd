@@ -58,8 +58,22 @@ filter(gapminder, lifeExp < 29)
 #
 filter(gapminder, country == "Mexico")
 
+```
+exercise using filter
+
+What was the average life expectency in Brazil between 1987 and 2007?
+Hint: do this in 2 steps by assigning a variable and then using the mean() function.
+
+
+
+```{r}
 x <- filter(gapminder, country == "Brazil", year > 1986)  
 mean(x$lifeExp)
 
 
 ```
+
+
+
+
+
